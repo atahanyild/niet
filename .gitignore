@@ -1,0 +1,48 @@
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+*.secret
+deployments/*.private.json
+
+# Rust / Cargo
+target/
+Cargo.lock.bak
+**/*.rs.bk
+
+# Foundry
+out/
+cache/
+broadcast/**/dry-run/
+
+# Node / pnpm
+node_modules/
+.pnpm-store/
+*.tsbuildinfo
+dist/
+build/
+
+# Next.js
+.next/
+next-env.d.ts
+
+# Cloudflare Wrangler
+.wrangler/
+.dev.vars
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*~
+
+# Testing / coverage
+coverage/
+lcov.info
+.nyc_output/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*

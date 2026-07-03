@@ -1,0 +1,3 @@
+[submodule "contracts-soroban/vendor/stellar-cctp"]
+	path = contracts-soroban/vendor/stellar-cctp
+	url = https://github.com/circlefin/stellar-cctp.git

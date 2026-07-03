@@ -1,0 +1,28 @@
+{
+  "name": "@bootnodedev/intents-framework",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "yarn workspaces foreach --all --parallel --topological run build",
+    "build:solver": "yarn workspace solver build",
+    "release": "yarn build && yarn changeset publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BootNodeDev/intents-framework.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/BootNodeDev/intents-framework/issues"
+  },
+  "homepage": "https://github.com/BootNodeDev/intents-framework#readme",
+  "description": "",
+  "workspaces": [
+    "typescript/solver",
+    "solidity"
+  ],
+  "packageManager": "yarn@4.5.1",
+  "devDependencies": {
+    "@changesets/cli": "^2.27.12"
+  }
+}

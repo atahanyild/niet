@@ -1,0 +1,6 @@
+packages:
+  - "ts/relayer"
+  - "ts/api"
+  - "ts/mcp"
+  - "ts/demo"
+  - "ts/examples"

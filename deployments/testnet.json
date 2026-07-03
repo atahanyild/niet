@@ -1,0 +1,41 @@
+{
+  "network": {
+    "stellar": {
+      "name": "Stellar Testnet",
+      "passphrase": "Test SDF Network ; September 2015",
+      "horizon": "https://horizon-testnet.stellar.org",
+      "soroban_rpc": "https://soroban-testnet.stellar.org",
+      "cctp_domain": 27
+    },
+    "base": {
+      "name": "Base Sepolia",
+      "chain_id": 84532,
+      "rpc": "https://sepolia.base.org",
+      "cctp_domain": 6
+    }
+  },
+  "circle_cctp": {
+    "stellar_testnet": {
+      "message_transmitter_v2": "CBJ6MTCKKZG73PMDZCJMSFRD7DQEMI4FKDH7CGDSV4W6FHCRBCQAVVJY",
+      "token_messenger_minter_v2": "CDNG7HXAPBWICI2E3AUBP3YZWZELJLYSB6F5CC7WLDTLTHVM74SLRTHP",
+      "stock_forwarder": "CA66Q2WFBND6V4UEB7RD4SAXSVIWMD6RA4X3U32ELVFGXV5PJK4T4VSZ"
+    },
+    "base_sepolia": {
+      "message_transmitter_v2": null,
+      "token_messenger_v2": null,
+      "usdc": null,
+      "_note": "TODO Story 1.2 — fetch from developers.circle.com/cctp/references/base-sepolia"
+    },
+    "iris_sandbox_url": "https://iris-api-sandbox.circle.com"
+  },
+  "niet": {
+    "day_0_test_mint_recipient": null,
+    "niet_settler": null,
+    "origin_settler": null,
+    "_note": "Populated as contracts are deployed."
+  },
+  "blend": {
+    "usdc_pool": null,
+    "_note": "TODO Task 3 — identify canonical Blend USDC testnet pool address."
+  }
+}
