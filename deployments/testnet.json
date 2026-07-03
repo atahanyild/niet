@@ -21,21 +21,36 @@
       "stock_forwarder": "CA66Q2WFBND6V4UEB7RD4SAXSVIWMD6RA4X3U32ELVFGXV5PJK4T4VSZ"
     },
     "base_sepolia": {
-      "message_transmitter_v2": null,
-      "token_messenger_v2": null,
-      "usdc": null,
-      "_note": "TODO Story 1.2 — fetch from developers.circle.com/cctp/references/base-sepolia"
+      "message_transmitter_v2": "0xE737e5cEBEEBa77EFE34D4aa090756590b1CE275",
+      "token_messenger_v2": "0x8FE6B999Dc680CcFDD5Bf7EB0974218be2542DAA",
+      "token_minter_v2": "0xb43db544E2c27092c107639Ad201b3dEfAbcF192",
+      "message_v2": "0xbaC0179bB358A8936169a63408C8481D582390C4",
+      "usdc": "0x036CbD53842c5426634e7929541eC2318f3dCF7e"
     },
-    "iris_sandbox_url": "https://iris-api-sandbox.circle.com"
+    "iris_sandbox_url": "https://iris-api-sandbox.circle.com",
+    "finality_threshold": {
+      "fast_transfer": 1000,
+      "standard_transfer": 2000
+    }
   },
-  "niet": {
-    "day_0_test_mint_recipient": null,
-    "niet_settler": null,
-    "origin_settler": null,
-    "_note": "Populated as contracts are deployed."
+  "usdc": {
+    "stellar_testnet_issuer_g_address": "GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5",
+    "stellar_testnet_sac": "CBIELTK6YBZJU5UP2WWQEUCYKLPU6AUNZ2BQ4WWFEIE3USCIHMXQDAMA",
+    "_note": "SAC derived deterministically from asset USDC:GBBD... via `stellar contract id asset`. Should match Circle's TokenMessengerMinter local_token mapping. Verify during Day-0 execution."
   },
   "blend": {
-    "usdc_pool": null,
-    "_note": "TODO Task 3 — identify canonical Blend USDC testnet pool address."
+    "testnet_v2_pool": "CCEBVDYM32YNYCVNRXQKDFFPISJJCV557CDZEIRBEE4NCV4KHPQ44HGF",
+    "backstop_v2": "CBDVWXT433PRVTUNM56C3JREF3HIZHRBA64NB2C3B2UNCKIS65ZYCLZA",
+    "pool_factory_v2": "CDV6RX4CGPCOKGTBFS52V3LMWQGZN3LCQTXF5RVPOOCG4XVMHXQ4NTF6",
+    "mock_usdc_used_by_pool": "CAQCFVLOBK5GIULPNZRGATJJMIZL5BSP7X5YJVMGCPTUEPFM4AVSRCJU",
+    "_note_1": "Sourced from blend-capital/blend-utils testnet.contracts.json (TestnetV2 = canonical v2 pool for testnet).",
+    "_note_KNOWN_ISSUE": "Blend's testnet pool uses a Blend-managed mock USDC (CAQC...), NOT Circle's real Stellar testnet USDC (CBIE...). For real end-to-end Niet: (a) verify Blend has a testnet pool that accepts Circle USDC, OR (b) deploy a swap step in the Blend adapter, OR (c) accept mock USDC for Story 1.6 tests. Address in Story 1.6 planning."
+  },
+  "niet": {
+    "day_0_test_mint_recipient": "CCNCLHUN5OVPVGG3DHXD72TT4MAN2HN5QSQ7J6KPCTKOYVBDI3KI4UKQ",
+    "day_0_deploy_tx": "https://stellar.expert/explorer/testnet/tx/08846ad6916db6ad39ddf9070c1db3e46c0bc443cde6780674d52ac9f815b5a3",
+    "niet_settler": null,
+    "origin_settler": null,
+    "_note": "day-0-test-forwarder deployed 2026-07-03. Constructor: message_transmitter=CBJ6..., usdc_token=CBIE..., admin=GAFH..."
   }
 }
