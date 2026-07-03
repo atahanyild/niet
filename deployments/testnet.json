@@ -49,7 +49,8 @@
   "niet": {
     "day_0_test_mint_recipient": "CCNCLHUN5OVPVGG3DHXD72TT4MAN2HN5QSQ7J6KPCTKOYVBDI3KI4UKQ",
     "day_0_deploy_tx": "https://stellar.expert/explorer/testnet/tx/08846ad6916db6ad39ddf9070c1db3e46c0bc443cde6780674d52ac9f815b5a3",
-    "niet_settler": null,
+    "niet_settler": "CAVJPLSNRHZ35GYCQLNGFDUCMGIYHFHI7SOUBBR2ZL7WCWPOQGDW6AX4",
+    "niet_settler_deploy_tx": "https://stellar.expert/explorer/testnet/tx/f090401a6c9c7adac6546bf4d6bfc32ab1cca810b82f7ab74c5b4e0a081032c8",
     "origin_settler": null,
     "_note": "day-0-test-forwarder deployed 2026-07-03. Constructor: message_transmitter=CBJ6..., usdc_token=CBIE..., admin=GAFH..."
   }
