@@ -1,0 +1,15 @@
+name = "niet-api"
+main = "src/index.ts"
+compatibility_date = "2026-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+STELLAR_TESTNET_RPC = "https://soroban-testnet.stellar.org"
+STELLAR_HORIZON_URL = "https://horizon-testnet.stellar.org"
+BASE_SEPOLIA_RPC = "https://sepolia.base.org"
+IRIS_SANDBOX_URL = "https://iris-api-sandbox.circle.com"
+NIET_SETTLER_ID = "CAVJPLSNRHZ35GYCQLNGFDUCMGIYHFHI7SOUBBR2ZL7WCWPOQGDW6AX4"
+ORIGIN_SETTLER_ADDRESS = "0x747e90a4e6c5eb39a8e138a3d98794ea3be12e55"
+BASE_SEPOLIA_CCTP_DOMAIN = "6"
+STELLAR_CCTP_DOMAIN = "27"
+USDC_BASE_SEPOLIA = "0x036CbD53842c5426634e7929541eC2318f3dCF7e"
