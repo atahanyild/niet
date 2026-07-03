@@ -1,0 +1,20 @@
+{
+  "_note": "Golden vectors — one hookData byte layout must be produced by the Solidity encoder AND accepted by the Rust decoder. Update in lock-step with a version bump.",
+  "vectors": [
+    {
+      "name": "basic_hold_timebound",
+      "intent_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "user_stellar_addr_bytes32": "0xa1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0",
+      "action": {
+        "tag": 0,
+        "pool_bytes32": "0x0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20",
+        "request_type": 2
+      },
+      "fallback": { "tag": 1 },
+      "conditions": [
+        { "tag": 1, "max_stellar_ledger_ts": 5000000 }
+      ],
+      "expected_hookdata_hex": "0x4e4945540000000101000068000000000000000000000000000000000000000000000000000000000000000000000000a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f200000000201000101010000000000004c4b40"
+    }
+  ]
+}
