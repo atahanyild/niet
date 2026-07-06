@@ -10,8 +10,8 @@ Niet extends Circle's CCTP V2 rail on Stellar with destination-side condition ev
 
 | Chain | Contract | Address |
 |---|---|---|
-| Stellar testnet | NietSettler | `CAVJPLSNRHZ35GYCQLNGFDUCMGIYHFHI7SOUBBR2ZL7WCWPOQGDW6AX4` |
-| Base Sepolia | OriginSettler | `0x747e90a4e6c5eb39a8e138a3d98794ea3be12e55` |
+| Stellar testnet | NietSettler | `CC3F2ZF7SM6GT7EYWPXULBJWDHNHMYEL3VFJ3A5HRORJ7PHFKNBOWULE` |
+| Base Sepolia | OriginSettler | `0x603aba4676a2e51cd12175fc2306991cdc727766` |
 
 Full deployment addresses (including Circle CCTP + Blend testnet references) in `deployments/testnet.json`.
 

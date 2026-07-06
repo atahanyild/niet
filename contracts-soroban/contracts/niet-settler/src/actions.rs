@@ -42,18 +42,21 @@ pub trait BlendPoolSubmitInterface {
 
 // ---------- CCTP source-side burn (for Refund) ----------
 
-/// Minimal client for Stellar-side Circle TokenMessengerV2 `deposit_for_burn`.
-/// Used by Refund to send USDC back to the source domain.
+/// Minimal client for Stellar-side Circle TokenMessengerMinter v2 `deposit_for_burn`.
+/// Signature matches `circlefin/stellar-cctp` contracts/token-messenger-minter-v2.
 #[contractclient(name = "TokenMessengerClient")]
 pub trait TokenMessengerInterface {
     fn deposit_for_burn(
         env: Env,
-        depositor: Address,
+        caller: Address,
         amount: i128,
         destination_domain: u32,
         mint_recipient: BytesN<32>,
         burn_token: Address,
-    ) -> Val;
+        destination_caller: BytesN<32>,
+        max_fee: i128,
+        min_finality_threshold: u32,
+    );
 }
 
 // ---------- Dispatch ----------
@@ -139,6 +142,13 @@ fn refund(env: &Env, params: &RefundParams, amount: i128) {
     let expiration = env.ledger().sequence() + 100;
     token_client.approve(&self_addr, &tmm, &amount, &expiration);
 
+    // Max fee: 1% of amount, so Circle has room to charge without reverting.
+    // Destination_caller = zero bytes32 means anyone can broadcast the message
+    // on the source side.
+    let max_fee = amount / 100;
+    let zero_caller = BytesN::<32>::from_array(env, &[0u8; 32]);
+    let min_finality_threshold: u32 = 1000; // Fast Transfer
+
     let client = TokenMessengerClient::new(env, &tmm);
     let _ = client
         .try_deposit_for_burn(
@@ -147,6 +157,9 @@ fn refund(env: &Env, params: &RefundParams, amount: i128) {
             &params.source_domain,
             &params.source_recipient,
             &usdc,
+            &zero_caller,
+            &max_fee,
+            &min_finality_threshold,
         )
         .unwrap_or_else(|_| panic_with_error!(env, NietSettlerError::RefundBurnFailed));
 }

@@ -14,9 +14,9 @@ contract DeployTestnet is Script {
     uint32 constant DEST_DOMAIN = 27;
 
     // NietSettler on Stellar testnet, as bytes32
-    // Stellar address: CAVJPLSNRHZ35GYCQLNGFDUCMGIYHFHI7SOUBBR2ZL7WCWPOQGDW6AX4
+    // Stellar address: CC3F2ZF7SM6GT7EYWPXULBJWDHNHMYEL3VFJ3A5HRORJ7PHFKNBOWULE (v2, refund fix)
     bytes32 constant NIET_SETTLER =
-        0x2a97ae4d89f3be9b0282da628e8261918394e8fc9d40863acaff6159ee81876f;
+        0xb65d64bf933c69fc98b3ef45853619da76608bdd4a9d83a78ba29fbce55342eb;
 
     // Circle CCTP V2 Fast Transfer finality threshold
     uint32 constant FAST_THRESHOLD = 1000;

@@ -59,16 +59,38 @@ Well under the SOW's 60-second target with 3x margin.
   - Executes `Fallback::Hold` — a SEP-41 transfer to the pre-declared user_stellar_addr
 - The Niet relayer's one-shot mode (Iris polling + Stellar submission) works.
 
-## Refund path — pending
+## Refund path — VERIFIED (2026-07-04)
 
-**Intent shape:** Blend supply action + Refund fallback + failing condition.
+**Intent shape:** Blend supply action + Refund fallback + failing TimeBound(0) condition.
 
-Refund calls `TokenMessenger.deposit_for_burn` on Stellar to send USDC back to the source domain. Requires:
+After fixing the `TokenMessengerClient` trait signature to match Circle's Stellar-side TokenMessengerMinter v2 (added `destination_caller`, `max_fee`, `min_finality_threshold` args), NietSettler was redeployed at `CC3F2ZF7SM6GT7EYWPXULBJWDHNHMYEL3VFJ3A5HRORJ7PHFKNBOWULE`. A new OriginSettler pointing at v2 was deployed at `0x603aba4676a2e51cd12175fc2306991cdc727766`.
 
-1. Verifying my defined `TokenMessengerClient` trait signature matches Circle's real Stellar-side TokenMessenger v2.
-2. Circle's Stellar-side USDC contract accepting the burn from NietSettler.
+### Sequence
 
-**Blocker:** Signature mismatch is likely; needs verification against Circle's stellar-cctp actual `deposit_for_burn` interface. Will iterate.
+1. Base Sepolia `OriginSettler.open` with intent (Refund fallback, source_recipient = user's bytes32).
+2. Iris attests in seconds.
+3. NietSettler `mint_and_settle`:
+   - CCTP MessageTransmitter dispatches to TokenMessengerMinter → USDC minted to NietSettler.
+   - ConditionEvaluator: TimeBound(0) fails → returns false.
+   - Fallback::Refund fires → NietSettler calls `TokenMessenger.deposit_for_burn` on Stellar side with `max_fee = amount/100`, `min_finality_threshold = 1000`, `destination_caller = zero bytes32`.
+   - USDC burned from NietSettler on Stellar.
+   - MessageTransmitter emits outgoing MessageSent.
+
+### Receipts
+
+- Base burn (source-side): [0xcb9df5...](https://sepolia.basescan.org/tx/0xcb9df5197c8e9fb36a34bd00d9bec064f6786ae42f499d7154069abbad9c8fd6)
+- Stellar mint_and_settle: [fa48c8...](https://stellar.expert/explorer/testnet/tx/fa48c88614d44f9eb37e744f594cefda09a268a63ec3af32412f03997a6f9573)
+- Four CCTP events observed in the same Stellar tx:
+  - `mint_and_withdraw` (TMM) — incoming USDC minted
+  - `message_received` (MT) — inbound CCTP message accepted
+  - `cond_eval` (NietSettler) — condition evaluated as false
+  - `refunded` (NietSettler) — Fallback::Refund event
+  - `deposit_for_burn` (TMM) — outgoing USDC burn back to Base
+  - `message_sent` (MT) — outgoing CCTP message queued for Iris attestation
+
+### Second leg (optional)
+
+To complete the round-trip, the outgoing CCTP message needs to be attested by Iris (Stellar domain 27 as source) and submitted to Base's MessageTransmitter to mint USDC back to the user. That's out of scope for the initial refund verification since the NietSettler side is proven; it's a standard CCTP relayer operation.
 
 ## Happy path (Blend supply) — pending
 

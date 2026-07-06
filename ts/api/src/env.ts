@@ -6,8 +6,8 @@ const envSchema = z.object({
   BASE_SEPOLIA_RPC: z.string().url().default("https://sepolia.base.org"),
   IRIS_SANDBOX_URL: z.string().url().default("https://iris-api-sandbox.circle.com"),
 
-  NIET_SETTLER_ID: z.string().default("CAVJPLSNRHZ35GYCQLNGFDUCMGIYHFHI7SOUBBR2ZL7WCWPOQGDW6AX4"),
-  ORIGIN_SETTLER_ADDRESS: z.string().default("0x747e90a4e6c5eb39a8e138a3d98794ea3be12e55"),
+  NIET_SETTLER_ID: z.string().default("CC3F2ZF7SM6GT7EYWPXULBJWDHNHMYEL3VFJ3A5HRORJ7PHFKNBOWULE"),
+  ORIGIN_SETTLER_ADDRESS: z.string().default("0x603aba4676a2e51cd12175fc2306991cdc727766"),
   BASE_SEPOLIA_CCTP_DOMAIN: z.coerce.number().default(6),
   STELLAR_CCTP_DOMAIN: z.coerce.number().default(27),
   USDC_BASE_SEPOLIA: z.string().default("0x036CbD53842c5426634e7929541eC2318f3dCF7e"),
