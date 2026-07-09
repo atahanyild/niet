@@ -2,9 +2,22 @@
 
 Conditional settlement layer for cross-chain intents on Stellar.
 
+[![npm](https://img.shields.io/npm/v/%40atahanyild%2Fniet-mcp-server?label=%40atahanyild%2Fniet-mcp-server)](https://www.npmjs.com/package/@atahanyild/niet-mcp-server)
+[![demo](https://img.shields.io/badge/demo-live-brightgreen)](https://demo-b59axz4dn-atahanyilds-projects.vercel.app)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 Niet extends Circle's CCTP V2 rail on Stellar with destination-side condition evaluation and atomic DeFi composition. A user (or AI agent) signs one intent on Base; USDC arrives on Stellar, user-specified conditions are evaluated at settlement time, and either the composed action fires (v1: Blend supply) or the pre-declared fallback executes (refund to source, or hold as USDC).
 
-**Testnet verified 2026-07-03.** Hold path proven end-to-end: [Base burn](https://sepolia.basescan.org/tx/0xbfb67fd3d93c0b8d3f836cc9ca1c8feb81044a9a3739e4e7741369de296a7342) → Circle Iris → [Stellar settle](https://stellar.expert/explorer/testnet/tx/d8d7e64b0db63ba360eb5d94afa20beb49791c9157fdffdd62114437101aa44c) in 19 seconds.
+**Both fallback paths verified end-to-end on testnet:**
+- Hold path (2026-07-03): [Base burn](https://sepolia.basescan.org/tx/0xbfb67fd3d93c0b8d3f836cc9ca1c8feb81044a9a3739e4e7741369de296a7342) → Circle Iris → [Stellar settle](https://stellar.expert/explorer/testnet/tx/d8d7e64b0db63ba360eb5d94afa20beb49791c9157fdffdd62114437101aa44c). 19 seconds.
+- Refund path (2026-07-04): [Base burn](https://sepolia.basescan.org/tx/0xcb9df5197c8e9fb36a34bd00d9bec064f6786ae42f499d7154069abbad9c8fd6) → [Stellar settle + reverse CCTP burn](https://stellar.expert/explorer/testnet/tx/fa48c88614d44f9eb37e744f594cefda09a268a63ec3af32412f03997a6f9573). Six CCTP events in one Stellar tx.
+
+Live demo: **[demo-b59axz4dn-atahanyilds-projects.vercel.app](https://demo-b59axz4dn-atahanyilds-projects.vercel.app)**
+
+AI agent install:
+```
+npx @atahanyild/niet-mcp-server
+```
 
 ## Deployed contracts (testnet)
 
