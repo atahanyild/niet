@@ -1,103 +1,102 @@
-import Image from "next/image";
+"use client";
+
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useMemo, useState } from "react";
+
+import { ConditionsBuilder } from "./components/ConditionsBuilder";
+import { DemoButtons } from "./components/DemoButtons";
+import { FallbackSelector } from "./components/FallbackSelector";
+import { FlowRunner } from "./components/FlowRunner";
+import { IntentComposer } from "./components/IntentComposer";
+import { NIET } from "./config/niet";
+import { buildDemoIntent, type Demo } from "./lib/intents";
+import type { NietOrderInput } from "./lib/orderData";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [demo, setDemo] = useState<Demo>("hold");
+  const [input, setInput] = useState<NietOrderInput>(() => buildDemoIntent("hold"));
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+  const chooseDemo = (which: Demo) => {
+    setDemo(which);
+    setInput(buildDemoIntent(which));
+  };
+
+  const summary = useMemo(() => {
+    const amount = (Number(input.amountMicroUsdc) / 1_000_000).toFixed(6);
+    return `${amount} USDC · conditions ${input.conditions.length} · fallback ${input.fallback.tag}`;
+  }, [input]);
+
+  return (
+    <main className="mx-auto grid max-w-4xl gap-8 px-6 py-12 text-neutral-100">
+      <header className="grid gap-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-semibold tracking-tight">Niet</h1>
+            <p className="text-sm text-neutral-400">
+              Conditional settlement layer for cross-chain intents on Stellar.
+            </p>
+          </div>
+          <ConnectButton />
+        </div>
+        <div className="grid grid-cols-2 gap-2 text-xs text-neutral-500 sm:grid-cols-3">
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href={`https://sepolia.basescan.org/address/${NIET.ORIGIN_SETTLER}`}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noreferrer"
+            className="rounded-md border border-neutral-800 bg-neutral-950/40 px-2 py-1 hover:text-blue-300"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+            Base OriginSettler
           </a>
           <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href={`https://stellar.expert/explorer/testnet/contract/${NIET.NIET_SETTLER_STELLAR}`}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noreferrer"
+            className="rounded-md border border-neutral-800 bg-neutral-950/40 px-2 py-1 hover:text-blue-300"
           >
-            Read our docs
+            Stellar NietSettler
+          </a>
+          <a
+            href="https://github.com/atahanyild/niet"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-md border border-neutral-800 bg-neutral-950/40 px-2 py-1 hover:text-blue-300"
+          >
+            github.com/atahanyild/niet
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </header>
+
+      <section className="grid gap-3">
+        <h2 className="text-sm uppercase tracking-wider text-neutral-500">Demos</h2>
+        <DemoButtons active={demo} onChoose={chooseDemo} />
+        <p className="text-xs text-neutral-500">Current intent: {summary}</p>
+      </section>
+
+      <section className="grid gap-4">
+        <IntentComposer input={input} onChange={(p) => setInput({ ...input, ...p })} />
+        <ConditionsBuilder
+          conditions={input.conditions}
+          poolDefault={input.pool}
+          onChange={(c) => setInput({ ...input, conditions: c })}
+        />
+        <FallbackSelector
+          value={input.fallback}
+          onChange={(f) => setInput({ ...input, fallback: f })}
+        />
+      </section>
+
+      <section className="grid gap-3">
+        <h2 className="text-sm uppercase tracking-wider text-neutral-500">Progress</h2>
+        <FlowRunner input={input} />
+      </section>
+
+      <footer className="grid gap-1 border-t border-neutral-900 pt-4 text-xs text-neutral-600">
+        <p>Testnet only. Base Sepolia → Stellar testnet via Circle CCTP V2.</p>
+        <p>
+          Hold + Refund paths verified end-to-end on live testnet. See
+          docs/testnet-verification.md.
+        </p>
       </footer>
-    </div>
+    </main>
   );
 }
