@@ -4,8 +4,8 @@ export const NIET = {
   NIET_SETTLER_STELLAR: "CC3F2ZF7SM6GT7EYWPXULBJWDHNHMYEL3VFJ3A5HRORJ7PHFKNBOWULE",
   BLEND_POOL_STELLAR_TESTNET: "CCEBVDYM32YNYCVNRXQKDFFPISJJCV557CDZEIRBEE4NCV4KHPQ44HGF",
   DAY_0_HOLD_TARGET: "CCNCLHUN5OVPVGG3DHXD72TT4MAN2HN5QSQ7J6KPCTKOYVBDI3KI4UKQ",
-  // Public REST API (fallback: local dev)
-  API_URL: process.env.NEXT_PUBLIC_NIET_API_URL ?? "http://localhost:8787",
+  // API is served from the same origin under /api/*
+  API_URL: process.env.NEXT_PUBLIC_NIET_API_URL ?? "",
   // WalletConnect projectId — grab a free one at https://cloud.walletconnect.com
   WC_PROJECT_ID: process.env.NEXT_PUBLIC_WC_PROJECT_ID ?? "demo",
 } as const;

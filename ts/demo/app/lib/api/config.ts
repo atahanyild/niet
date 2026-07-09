@@ -1,0 +1,12 @@
+export const API_CONFIG = {
+  STELLAR_TESTNET_RPC:
+    process.env.STELLAR_TESTNET_RPC ?? "https://soroban-testnet.stellar.org",
+  BASE_SEPOLIA_CHAIN_ID: 84532,
+  BASE_SEPOLIA_RPC: process.env.BASE_SEPOLIA_RPC ?? "https://sepolia.base.org",
+  USDC_BASE_SEPOLIA:
+    "0x036CbD53842c5426634e7929541eC2318f3dCF7e" as `0x${string}`,
+  ORIGIN_SETTLER_ADDRESS:
+    "0x603aba4676a2e51cd12175fc2306991cdc727766" as `0x${string}`,
+  NIET_SETTLER_ID:
+    process.env.NIET_SETTLER_ID ?? "CC3F2ZF7SM6GT7EYWPXULBJWDHNHMYEL3VFJ3A5HRORJ7PHFKNBOWULE",
+} as const;

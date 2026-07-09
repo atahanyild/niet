@@ -24,7 +24,7 @@ niet/
 ├── ts/
 │   ├── relayer/          Iris attestation poller + Stellar submitter (one-shot mode)
 │   ├── api/              Hono REST API + OpenAPI (Cloudflare Workers)
-│   ├── mcp/              @niet/mcp-server (agent tools)
+│   ├── mcp/              @atahanyild/niet-mcp-server (agent tools)
 │   ├── demo/             Next.js 15 demo UI (scaffold — full UI pending)
 │   └── examples/         Reference autonomous rebalance agent
 ├── deployments/          Testnet contract addresses (public)

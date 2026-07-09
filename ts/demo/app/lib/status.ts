@@ -12,7 +12,7 @@ export interface StatusResponse {
 /// a placeholder while the API is not deployed.
 export async function fetchStatus(intentHash: string): Promise<StatusResponse> {
   try {
-    const res = await fetch(`${NIET.API_URL}/intent/status/${intentHash}`, {
+    const res = await fetch(`${NIET.API_URL}/api/intent/status/${intentHash}`, {
       cache: "no-store",
     });
     if (!res.ok) {

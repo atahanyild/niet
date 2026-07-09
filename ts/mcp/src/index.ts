@@ -1,15 +1,16 @@
 #!/usr/bin/env node
 /**
- * @niet/mcp-server — MCP server exposing Niet's quote + execute tools.
+ * @atahanyild/niet-mcp-server — MCP server exposing Niet's quote + execute tools.
  *
- * Local install:
- *   npx @niet/mcp-server
+ * Install:
+ *   npx @atahanyild/niet-mcp-server
  *
  * Configure your MCP-compatible editor (Claude Code, Cursor) to launch this
  * command; the server communicates over stdio.
  *
  * Env vars:
- *   NIET_API_URL   Base URL of the Niet REST API (default: production).
+ *   NIET_API_URL   Base URL of the Niet REST API. Defaults to the production
+ *                  Vercel deploy. Override for local dev.
  */
 
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
@@ -68,10 +69,12 @@ const StatusInputSchema = z.object({
 
 // ---------- server ----------
 
-const NIET_API_URL = process.env.NIET_API_URL ?? "http://localhost:8787";
+const NIET_API_URL =
+  process.env.NIET_API_URL ??
+  "https://demo-b59axz4dn-atahanyilds-projects.vercel.app";
 
 const server = new Server(
-  { name: "@niet/mcp-server", version: "0.1.0" },
+  { name: "@atahanyild/niet-mcp-server", version: "0.1.0" },
   { capabilities: { tools: {} } },
 );
 

@@ -8,7 +8,7 @@
     "test": "echo 'no tests'"
   },
   "dependencies": {
-    "@niet/mcp-server": "workspace:*",
+    "@atahanyild/niet-mcp-server": "workspace:*",
     "zod": "^3.23.8"
   },
   "devDependencies": {

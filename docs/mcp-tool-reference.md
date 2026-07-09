@@ -1,6 +1,6 @@
 # Niet MCP Tool Reference
 
-`@niet/mcp-server` v0.1.0. See `ts/mcp/README.md` for installation.
+`@atahanyild/niet-mcp-server` v0.1.0. See `ts/mcp/README.md` for installation.
 
 ## Tools
 
