@@ -67,7 +67,7 @@ contract OriginSettler is IOriginSettler {
             revert UnsupportedOrderDataType(order.orderDataType);
         }
         NietTypes.NietOrderData memory nod = abi.decode(order.orderData, (NietTypes.NietOrderData));
-        _openInternal(msg.sender, order.fillDeadline, order.orderData, nod, /* nonce */ 0);
+        _openInternal(msg.sender, order.fillDeadline, order.orderData, nod, nod.nonce);
     }
 
     /// Gasless orders (openFor / EIP-712 signed) are Phase 2. Reverts in v1.
@@ -85,7 +85,8 @@ contract OriginSettler is IOriginSettler {
         returns (ResolvedCrossChainOrder memory)
     {
         NietTypes.NietOrderData memory nod = abi.decode(order.orderData, (NietTypes.NietOrderData));
-        bytes32 intentHash = IntentHash.compute(block.chainid, address(this), msg.sender, 0, order.orderData);
+        bytes32 intentHash =
+            IntentHash.compute(block.chainid, address(this), msg.sender, nod.nonce, order.orderData);
         return _resolveInternal(msg.sender, order.fillDeadline, order.orderData, nod, intentHash);
     }
 

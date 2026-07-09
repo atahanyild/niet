@@ -63,7 +63,7 @@ Well under the SOW's 60-second target with 3x margin.
 
 **Intent shape:** Blend supply action + Refund fallback + failing TimeBound(0) condition.
 
-After fixing the `TokenMessengerClient` trait signature to match Circle's Stellar-side TokenMessengerMinter v2 (added `destination_caller`, `max_fee`, `min_finality_threshold` args), NietSettler was redeployed at `CC3F2ZF7SM6GT7EYWPXULBJWDHNHMYEL3VFJ3A5HRORJ7PHFKNBOWULE`. A new OriginSettler pointing at v2 was deployed at `0x603aba4676a2e51cd12175fc2306991cdc727766`.
+After fixing the `TokenMessengerClient` trait signature to match Circle's Stellar-side TokenMessengerMinter v2 (added `destination_caller`, `max_fee`, `min_finality_threshold` args), NietSettler was redeployed at `CC3F2ZF7SM6GT7EYWPXULBJWDHNHMYEL3VFJ3A5HRORJ7PHFKNBOWULE`. A new OriginSettler pointing at v2 was deployed at `0xeb3d485296536d701230b45b900468385a8f9c4a`.
 
 ### Sequence
 

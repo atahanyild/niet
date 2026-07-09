@@ -55,12 +55,15 @@ export function FlowRunner({ input }: { input: NietOrderInput }) {
     reset();
     setRunning(true);
     try {
-      const orderData = encodeOrderData(input);
+      // Generate a unique per-intent nonce so back-to-back submissions from
+      // the same wallet don't collide on the OriginSettler's replay guard.
+      const nonce = BigInt(Date.now()) * 1000n + BigInt(Math.floor(Math.random() * 1000));
+      const orderData = encodeOrderData(input, nonce);
       const iHash = computeIntentHashPacked(
         CHAIN.BASE_SEPOLIA_ID,
         NIET.ORIGIN_SETTLER,
         address,
-        0n,
+        nonce,
         orderData,
       );
       setIntentHash(iHash);

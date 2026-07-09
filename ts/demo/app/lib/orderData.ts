@@ -37,7 +37,7 @@ export function strkeyContractToBytes32(strkey: string): `0x${string}` {
   return ("0x" + Buffer.from(raw).toString("hex")) as `0x${string}`;
 }
 
-export function encodeOrderData(input: NietOrderInput): `0x${string}` {
+export function encodeOrderData(input: NietOrderInput, nonce: bigint): `0x${string}` {
   const conditions = input.conditions.map((c) => {
     if (c.tag === "RateThreshold") {
       return {
@@ -71,7 +71,7 @@ export function encodeOrderData(input: NietOrderInput): `0x${string}` {
 
   return encodeAbiParameters(
     parseAbiParameters([
-      "(address inputToken,uint256 amount,uint256 maxFee,bytes32 userStellarAddr,(uint8 tag,bytes32 pool,uint32 requestType) action,(uint8 tag,uint32 sourceDomain,bytes32 sourceRecipient) fbk,(uint8 tag,bytes32 pool,uint32 minApyBps,uint64 maxStellarLedgerTs)[] conditions) order",
+      "(address inputToken,uint256 amount,uint256 maxFee,bytes32 userStellarAddr,uint256 nonce,(uint8 tag,bytes32 pool,uint32 requestType) action,(uint8 tag,uint32 sourceDomain,bytes32 sourceRecipient) fbk,(uint8 tag,bytes32 pool,uint32 minApyBps,uint64 maxStellarLedgerTs)[] conditions) order",
     ]),
     [
       {
@@ -79,6 +79,7 @@ export function encodeOrderData(input: NietOrderInput): `0x${string}` {
         amount: BigInt(input.amountMicroUsdc),
         maxFee: BigInt(input.maxFeeMicroUsdc),
         userStellarAddr: strkeyContractToBytes32(input.userStellarAddr),
+        nonce,
         action: {
           tag: 0,
           pool: strkeyContractToBytes32(input.pool),

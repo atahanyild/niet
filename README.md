@@ -24,7 +24,7 @@ npx @atahanyild/niet-mcp-server
 | Chain | Contract | Address |
 |---|---|---|
 | Stellar testnet | NietSettler | `CC3F2ZF7SM6GT7EYWPXULBJWDHNHMYEL3VFJ3A5HRORJ7PHFKNBOWULE` |
-| Base Sepolia | OriginSettler | `0x603aba4676a2e51cd12175fc2306991cdc727766` |
+| Base Sepolia | OriginSettler | `0xeb3d485296536d701230b45b900468385a8f9c4a` |
 
 Full deployment addresses (including Circle CCTP + Blend testnet references) in `deployments/testnet.json`.
 

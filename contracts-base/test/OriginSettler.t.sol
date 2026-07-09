@@ -124,6 +124,7 @@ contract OriginSettlerTest is Test {
             amount: amount,
             maxFee: maxFee,
             userStellarAddr: 0xa1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0,
+            nonce: 1,
             action: NietTypes.Action({
                 tag: NietTypes.ACTION_BLEND_SUPPLY,
                 pool: 0x0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20,

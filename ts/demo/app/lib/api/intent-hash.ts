@@ -18,7 +18,11 @@ export interface Intent {
   >;
 }
 
-export function encodeOrderData(intent: Intent, usdc: `0x${string}`): `0x${string}` {
+export function encodeOrderData(
+  intent: Intent,
+  usdc: `0x${string}`,
+  nonce: bigint,
+): `0x${string}` {
   const action = {
     tag: 0,
     pool: strkeyContractToBytes32(intent.action.pool),
@@ -58,7 +62,7 @@ export function encodeOrderData(intent: Intent, usdc: `0x${string}`): `0x${strin
 
   return encodeAbiParameters(
     parseAbiParameters([
-      "(address inputToken,uint256 amount,uint256 maxFee,bytes32 userStellarAddr,(uint8 tag,bytes32 pool,uint32 requestType) action,(uint8 tag,uint32 sourceDomain,bytes32 sourceRecipient) fbk,(uint8 tag,bytes32 pool,uint32 minApyBps,uint64 maxStellarLedgerTs)[] conditions) order",
+      "(address inputToken,uint256 amount,uint256 maxFee,bytes32 userStellarAddr,uint256 nonce,(uint8 tag,bytes32 pool,uint32 requestType) action,(uint8 tag,uint32 sourceDomain,bytes32 sourceRecipient) fbk,(uint8 tag,bytes32 pool,uint32 minApyBps,uint64 maxStellarLedgerTs)[] conditions) order",
     ]),
     [
       {
@@ -66,6 +70,7 @@ export function encodeOrderData(intent: Intent, usdc: `0x${string}`): `0x${strin
         amount: BigInt(intent.amount),
         maxFee: BigInt(intent.maxFee),
         userStellarAddr: strkeyContractToBytes32(intent.userStellarAddr),
+        nonce,
         action,
         fbk,
         conditions,

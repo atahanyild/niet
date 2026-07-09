@@ -27,12 +27,13 @@ export async function POST(req: NextRequest) {
   }
 
   const { intent, userBaseAddress } = body;
-  const orderData = encodeOrderData(intent, API_CONFIG.USDC_BASE_SEPOLIA);
+  const nonce = BigInt(Date.now()) * 1000n + BigInt(Math.floor(Math.random() * 1000));
+  const orderData = encodeOrderData(intent, API_CONFIG.USDC_BASE_SEPOLIA, nonce);
   const intentHash = computeIntentHashPacked(
     API_CONFIG.BASE_SEPOLIA_CHAIN_ID,
     API_CONFIG.ORIGIN_SETTLER_ADDRESS,
     userBaseAddress,
-    0n,
+    nonce,
     orderData,
   );
 

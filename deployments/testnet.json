@@ -53,7 +53,7 @@
     "niet_settler_bytes32": "0xb65d64bf933c69fc98b3ef45853619da76608bdd4a9d83a78ba29fbce55342eb",
     "niet_settler_deploy_tx": "https://stellar.expert/explorer/testnet/tx/f090401a6c9c7adac6546bf4d6bfc32ab1cca810b82f7ab74c5b4e0a081032c8",
     "niet_settler_v1_deprecated": "CAVJPLSNRHZ35GYCQLNGFDUCMGIYHFHI7SOUBBR2ZL7WCWPOQGDW6AX4",
-    "origin_settler": "0x603aba4676a2e51cd12175fc2306991cdc727766",
+    "origin_settler": "0xeb3d485296536d701230b45b900468385a8f9c4a",
     "origin_settler_v1_deprecated": "0x747e90a4e6c5eb39a8e138a3d98794ea3be12e55",
     "origin_settler_deploy_tx": "https://sepolia.basescan.org/tx/0xbfd074c2908f1a2875ff5369a439aa7a66b201dfb44edb6931cf4f31382dec5b",
     "_note": "day-0-test-forwarder deployed 2026-07-03. Constructor: message_transmitter=CBJ6..., usdc_token=CBIE..., admin=GAFH..."

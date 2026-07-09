@@ -63,6 +63,10 @@ library NietTypes {
         uint256 maxFee;
         /// 32-byte Stellar contract ID that will receive USDC in the Hold fallback.
         bytes32 userStellarAddr;
+        /// Client-generated per-intent nonce (unique per submission). Prevents
+        /// replay on the Base side and disambiguates intent_hash for status
+        /// polling. Not part of hookData — only used on the Base side.
+        uint256 nonce;
         Action action;
         Fallback fbk;
         Condition[] conditions;

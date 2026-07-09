@@ -7,7 +7,7 @@ const envSchema = z.object({
   IRIS_SANDBOX_URL: z.string().url().default("https://iris-api-sandbox.circle.com"),
 
   NIET_SETTLER_ID: z.string().default("CC3F2ZF7SM6GT7EYWPXULBJWDHNHMYEL3VFJ3A5HRORJ7PHFKNBOWULE"),
-  ORIGIN_SETTLER_ADDRESS: z.string().default("0x603aba4676a2e51cd12175fc2306991cdc727766"),
+  ORIGIN_SETTLER_ADDRESS: z.string().default("0xeb3d485296536d701230b45b900468385a8f9c4a"),
   BASE_SEPOLIA_CCTP_DOMAIN: z.coerce.number().default(6),
   STELLAR_CCTP_DOMAIN: z.coerce.number().default(27),
   USDC_BASE_SEPOLIA: z.string().default("0x036CbD53842c5426634e7929541eC2318f3dCF7e"),
