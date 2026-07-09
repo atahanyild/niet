@@ -30,7 +30,7 @@ npx @atahanyild/niet-mcp-server
 
 ## Environment
 
-- `NIET_API_URL` — Niet REST API base URL. Defaults to the production deploy: `https://demo-b59axz4dn-atahanyilds-projects.vercel.app`. Override for local dev.
+- `NIET_API_URL` — Niet REST API base URL. Defaults to the production deploy: `https://demo-atahanyilds-projects.vercel.app`. Override for local dev.
 
 ## Tools
 

@@ -11,7 +11,7 @@
 Before hitting record:
 
 1. **Open all tabs in order** (Cmd-1 for the first tab, etc.):
-   1. [demo-b59axz4dn-atahanyilds-projects.vercel.app](https://demo-b59axz4dn-atahanyilds-projects.vercel.app) — the demo
+   1. [demo-atahanyilds-projects.vercel.app](https://demo-atahanyilds-projects.vercel.app) — the demo
    2. [github.com/atahanyild/niet](https://github.com/atahanyild/niet) — the repo
    3. Terminal window with `docs/demo-video-script.md` open and the script visible for reference
    4. [Basescan tx 0xbfb67fd3...](https://sepolia.basescan.org/tx/0xbfb67fd3d93c0b8d3f836cc9ca1c8feb81044a9a3739e4e7741369de296a7342) — known Hold burn (backup)

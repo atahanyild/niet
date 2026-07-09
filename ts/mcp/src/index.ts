@@ -71,7 +71,7 @@ const StatusInputSchema = z.object({
 
 const NIET_API_URL =
   process.env.NIET_API_URL ??
-  "https://demo-b59axz4dn-atahanyilds-projects.vercel.app";
+  "https://demo-atahanyilds-projects.vercel.app";
 
 const server = new Server(
   { name: "@atahanyild/niet-mcp-server", version: "0.1.0" },
