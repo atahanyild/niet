@@ -24,7 +24,10 @@ export async function findSettlementEvent(
   | null
 > {
   const intentHashB64 = encodeBytesTopic(intentHashHex);
-  const startLedger = await getRecentStartLedger(sorobanRpc, 120_000);
+  // Soroban public RPC caps getEvents range at ~10k ledgers. Anything wider
+  // silently returns []. 5000 ledgers ≈ 2.2h — more than enough for demo
+  // polling (settlement usually lands within ~30s of burn).
+  const startLedger = await getRecentStartLedger(sorobanRpc, 5_000);
 
   const body = {
     jsonrpc: "2.0",
