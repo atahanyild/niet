@@ -58,7 +58,7 @@ export function DemoButtons({
           <div className="text-xs text-neutral-500">{it.sub}</div>
           {it.disabledNote ? (
             <div className="mt-1 text-[10px] uppercase tracking-wider text-amber-500">
-              testnet unavailable
+              testnet pool unavailable
             </div>
           ) : null}
         </button>
