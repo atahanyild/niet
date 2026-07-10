@@ -101,6 +101,17 @@ export function FlowRunner({ input }: { input: NietOrderInput }) {
       setStage("iris", { state: "active", detail: "Polling Iris sandbox…" });
       setStage("mint", { state: "idle", detail: "Waits for attestation" });
       setStage("final", { state: "idle" });
+
+      // Fire the relayer. It polls Iris server-side, then submits the
+      // Stellar mint. We don't await — the polling loop below will surface
+      // the settled/refunded/held event once it lands.
+      void fetch("/api/intent/relay", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ burnTxHash: openHash }),
+      }).catch(() => {
+        /* server logs handle errors; polling loop reports timeouts */
+      });
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
       setRunning(false);
