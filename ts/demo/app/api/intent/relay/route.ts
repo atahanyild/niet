@@ -44,11 +44,15 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  console.log("[relay] start", { burnTxHash: body.burnTxHash });
   try {
     const attested = await pollIrisUntilAttested({
       irisUrl: IRIS_URL,
       sourceDomain: BASE_SEPOLIA_DOMAIN,
       txHash: body.burnTxHash,
+    });
+    console.log("[relay] attested", {
+      messageLen: (attested.message.length - 2) / 2,
     });
 
     const stellarTxHash = await submitMintAndSettle(
@@ -61,6 +65,7 @@ export async function POST(req: NextRequest) {
       attested.message,
       attested.attestation,
     );
+    console.log("[relay] settled", { stellarTxHash });
 
     return Response.json({
       ok: true,
@@ -68,8 +73,10 @@ export async function POST(req: NextRequest) {
       stellarExpertUrl: `https://stellar.expert/explorer/testnet/tx/${stellarTxHash}`,
     });
   } catch (e) {
+    const message = e instanceof Error ? e.message : String(e);
+    console.error("[relay] failed", { burnTxHash: body.burnTxHash, message });
     return Response.json(
-      { error: { code: "relay_failed", message: e instanceof Error ? e.message : String(e) } },
+      { error: { code: "relay_failed", message } },
       { status: 500 },
     );
   }
